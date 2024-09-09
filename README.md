@@ -63,15 +63,34 @@ Before you begin, make sure you have the following installed:
 
 ## API Endpoints
 
-### User Authentication
+- **User Registration**: `/user/passengerSignUp` (POST)
+  - **Description**: Registers a new passenger.
+  - **Request Body**: `UserInfo` object with name, email, contact, and password.
+  
+- **Admin Registration**: `/user/adminSignUp` (POST)
+  - **Description**: Registers a new admin.
+  - **Request Body**: `UserInfo` object with name, email, contact, and password.
 
-1. **Passenger Signup**:  
-   Endpoint: `/user/passengerSignUp`  
-   Method: `POST`  
-   Request Body:  
-   ```json
-   {
-      "username": "string",
-      "password": "string",
-      "email": "string"
-   }
+- **Admin Login**: `/user/adminsignin` (POST)
+  - **Description**: Authenticates an admin and returns a JWT token.
+  - **Request Body**: `JwtRequest` object with username and password.
+
+- **Passenger Login**: `/user/passengersignin` (POST)
+  - **Description**: Authenticates a passenger and returns a JWT token.
+  - **Request Body**: `JwtRequest` object with username and password.
+
+- **Add Train** (Admin Only): `/user/admin/addTrain` (POST)
+  - **Description**: Adds a new train to the system.
+  - **Request Body**: `Train` object with trainNo, trainName, source, destination, departureTime, availableSeats, arrivalTime, and trainType.
+  - **Headers**: Authorization token required.
+
+- **Get Trains Between Stations**: `/train/getTrainsBetweenStations` (GET)
+  - **Description**: Retrieves trains between specified source and destination.
+  - **Request Params**: `source` (String), `destination` (String)
+  - **Headers**: Authorization token required.
+
+- **Book Seat**: `/booking/bookSeat` (POST)
+  - **Description**: Books seats on a train.
+  - **Request Body**: `Booking` object with user, train, seatNumbers, source, destination, arrivalTime, departureTime, and trainClass.
+  - **Headers**: Authorization token required.
+
