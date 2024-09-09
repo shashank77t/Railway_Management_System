@@ -49,7 +49,7 @@ public class UserController {
        try{
            String encodedPassword = passwordEncoder.encode(user.getPassword());
            user.setPassword(encodedPassword);
-          
+
            UserInfo u=userService.passengerSignUp(user);
            return new ResponseEntity<>(u, HttpStatus.OK);
        }catch (UserException ue){
